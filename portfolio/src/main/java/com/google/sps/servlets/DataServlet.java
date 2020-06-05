@@ -13,7 +13,11 @@
 // limitations under the License.
  
 package com.google.sps.servlets;
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> master
 import java.util.*;
 import java.io.*;
 import java.io.IOException;
@@ -25,6 +29,7 @@ import javax.servlet.http.HttpServletResponse;
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
+<<<<<<< HEAD
  
   ArrayList<String> commentArray = new ArrayList<String>();
  
@@ -36,10 +41,24 @@ public class DataServlet extends HttpServlet {
       response.getWriter().println(json);
   }
  
+=======
+
+  ArrayList<String> commentArray = new ArrayList<String>();
+
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    String json = convertToJson(commentArray);
+
+      response.setContentType("application/json");
+      response.getWriter().println(json);
+  }
+
+>>>>>>> master
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     String comment = getComments(request);
     commentArray.add(comment);
+<<<<<<< HEAD
  
     response.sendRedirect("/index.html");
   }
@@ -51,6 +70,19 @@ public class DataServlet extends HttpServlet {
     return value;
   }
  
+=======
+
+    response.sendRedirect("/index.html");
+  }
+
+  public String getComments(HttpServletRequest request) {
+    String value = request.getParameter("comment-input");
+
+    if (value == null) { return "";}
+    return value;
+  }
+
+>>>>>>> master
   public String convertToJson(ArrayList<String> comments){
     String json = "{";
     for (int i = 0; i < comments.size(); i++){
