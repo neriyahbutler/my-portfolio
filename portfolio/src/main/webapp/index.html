@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html>
   <head>
   <meta charset="UTF-8">
   <title>
@@ -11,45 +10,61 @@
 
   <!-- Displays my name, links to LinkedIn/Github along and my number -->
   <h1>
-      <img id="myAvatar" src="images/neriyah.jpg" width="175" height="175">
+    <img id="myAvatar" src="images/neriyah.jpg" width="175" height="175">
 
-        <span class="left">
-          NERIYAH BUTLER
-          <a href="https://www.linkedin.com/in/neriyah-butler-23160b166">
-            <img src="images/linkedin.png" width="37" height="37" class="logo">
-          </a>
-          <a href="https://github.com/neriyahbutler">
-            <img src="images/githubv2.png" width="37" height="37" class="logo">
-          </a>
-        </span> 
+      <span class="left">
+        NERIYAH BUTLER
+        <a href="https://www.linkedin.com/in/neriyah-butler-23160b166">
+          <img src="images/linkedin.png" width="37" height="37" class="logo">
+        </a>
+        <a href="https://github.com/neriyahbutler">
+          <img src="images/githubv2.png" width="37" height="37" class="logo">
+        </a>
+      </span> 
 
-        <span class="right">
-          281-865-8157
-        </span>
+      <span class="right">
+        281-865-8157
+      </span>
   </h1>
 
   </head>
 
 
 
-  <body>
-  <div id="content">
-    <!-- Provides link to my resume -->
-    <a href="resume/nzbutler_resume.pdf">
-      <p style="font-size: 30px;" class="resume">
-        VIEW MY RESUME
-      </p>
-    </a>
+  <body onload="getComments()">
+    <div id="content">
+      <!-- Provides link to my resume -->
+      <a href="resume/nzbutler_resume.pdf">
+        <p style="font-size: 30px;" class="resume">
+          VIEW MY RESUME
+        </p>
+      </a>
 
     <br><br><br>
 
     <!-- Displays a short bio about me along with some artwork-->
     <p id="myBio">
-    My name is Neriyah Butler and I am a sophmore at the University of Houston.    
-    Outside of coding, I like to learn how to cook dishes, play video games, listen to music, and draw! 
+      My name is Neriyah Butler and I am a sophmore at the University of Houston.    
+      Outside of coding, I like to learn how to cook dishes, play video games, listen to music, and draw! 
     </p>
     
     <br><br><br>
+
+    <div id="commentContainer">
+      <label for="commentList">Comments</label>
+      <div id="commentList"></div>
+    </div>
+
+    <form action="/data" method="POST">
+      <p>Enter a comment:</p>
+      <input type="text" name="comment-input">
+      <br><br>
+
+      <input type="submit"/>
+    </form>
+
+    <br><br><br>
+
 
     <h4>ARTWORK</h4>
 
@@ -104,6 +119,6 @@
     </div>
   </div>
 
-    </div>
+  </div>
   </body>
 </html>
