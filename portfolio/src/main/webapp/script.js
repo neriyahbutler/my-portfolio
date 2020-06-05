@@ -11,20 +11,12 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-<<<<<<< HEAD
  
-=======
-
->>>>>>> master
 function getComments(){
   fetch('/data').then(response => response.json()).then((text) => {
     const commentContainer = document.getElementById('commentList');
     const jsonValues = Object.values(text);
-<<<<<<< HEAD
  
-=======
-
->>>>>>> master
     console.log(jsonValues);
     
     for(var i = 0; i < Object.values(text).length; i++){
@@ -33,8 +25,4 @@ function getComments(){
       commentContainer.appendChild(comment);
     }
   })
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> master

@@ -67,11 +67,7 @@ a:-webkit-any-link {
 }
  
 /* Creates effect for resume link */
-<<<<<<< HEAD
  
-=======
-
->>>>>>> master
 .resume{
   color: #aaa;
   transition: .5s ease;
@@ -83,11 +79,7 @@ a:-webkit-any-link {
 }
  
 /* Displays a bio about me along with some artwork. Section for artwork used to create the effects for the artworks */
-<<<<<<< HEAD
  
-=======
-
->>>>>>> master
 #myBio{
   font-size: 50px;
   letter-spacing: 2.5px;
@@ -103,11 +95,7 @@ a:-webkit-any-link {
   margin-left: auto;
   margin-right: auto;
   width: auto;
-<<<<<<< HEAD
  
-=======
-
->>>>>>> master
 }
  
 .drawing{
@@ -154,11 +142,7 @@ a:-webkit-any-link {
 }
  
 /* Creates a similar effect to the artwork for the projects */
-<<<<<<< HEAD
  
-=======
-
->>>>>>> master
 #projects{
   display: flex;
   flex-wrap: wrap;
@@ -214,9 +198,4 @@ a:-webkit-any-link {
  
 .project > h5{
   font-size: 17px;
-<<<<<<< HEAD
 }
-
-=======
-}
->>>>>>> master
