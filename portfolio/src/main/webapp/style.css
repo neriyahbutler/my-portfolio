@@ -1,0 +1,201 @@
+/* 'Header' section */
+ 
+h1{
+  font-family: "Arial";
+  font-weight: 70;
+  letter-spacing: 2.5px;
+}
+ 
+h1 > #myAvatar{
+  border-radius: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+ 
+.left{
+  float: left;
+  left: 2%;
+  position: relative;
+}
+ 
+.right{
+  float: right;
+  position: relative;
+  right: 2%;
+}
+ 
+.logo{
+  transition: all 1s ease;
+}
+ 
+.logo:hover{
+  transform: scale(1.5);
+}
+ 
+a:hover{
+  color: red;
+}
+ 
+/* Body section */
+ 
+#content {
+  font-family: "Arial";
+  letter-spacing: 2.5px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  text-align: center;
+  width: 75%;
+}
+ 
+h4{
+  color: red;
+  font-weight: bold;
+  font-size: 40px;
+  letter-spacing: 7.5px;
+}
+ 
+p{
+  font-size: 20px;
+}
+ 
+a:-webkit-any-link {
+  color: -webkit-link;
+  cursor: pointer;
+  text-decoration: none;
+}
+ 
+/* Creates effect for resume link */
+ 
+.resume{
+  color: #aaa;
+  transition: .5s ease;
+}
+ 
+.resume:hover{
+  color: red;
+  transform: scale(1.1);
+}
+ 
+/* Displays a bio about me along with some artwork. Section for artwork used to create the effects for the artworks */
+ 
+#myBio{
+  font-size: 50px;
+  letter-spacing: 2.5px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+}
+ 
+#artwork{
+  display: inline-table;
+  flex-wrap: wrap;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  width: auto;
+ 
+}
+ 
+.drawing{
+  display: inline-flex;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+ 
+.drawingIMG{
+  display: block;
+}
+ 
+.overlay{
+  background-color: red;
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: .5s ease;
+  width: 100%;
+}
+ 
+.drawing:hover .overlay{
+  opacity: 1;
+}
+ 
+.text{
+  bottom: 25%;
+  color: white;
+  font-size: 20px;
+  left: 50%;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+ 
+/* Creates a similar effect to the artwork for the projects */
+ 
+#projects{
+  display: flex;
+  flex-wrap: wrap;
+  height: 50%;
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+}
+ 
+.project{
+  display: block;
+  height: auto;
+  position: relative;
+  width: 50%;
+}
+ 
+.project:hover .overlay{
+  opacity: 1;
+}
+ 
+.project2{
+  display: block;
+  height: auto;
+  position: relative;
+  width: 100%;
+}
+ 
+.project2:hover .overlay{
+  opacity: 1;
+}
+ 
+.defaulttxt{
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  text-shadow: -1px 1px 0 red,
+                1px 1px 0 red,
+                1px -1px 0 red,
+                -1px -1px 0 red;
+  left: 50%;
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+ 
+.projectimg{
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+ 
+.project > h5{
+  font-size: 17px;
+}
