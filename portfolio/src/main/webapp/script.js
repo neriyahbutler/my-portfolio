@@ -15,6 +15,7 @@
 var userLoggedIn;
 
 function getLink(){
+    console.log("running getLink()...");
     fetch("/log").then(response => response.json()).then((text) => {
 
       console.log(text);
@@ -35,6 +36,8 @@ function getLink(){
 
 
 function getComments(){
+  console.log("running getComments()...");
+  getLink();
   fetch('/data').then(response => response.json()).then((text) => {
     const commentContainer = document.getElementById('commentList');
     const jsonValues = Object.values(text);
@@ -72,3 +75,4 @@ function getComments(){
     }  
   });
 }
+

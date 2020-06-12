@@ -43,8 +43,8 @@ public class DataServlet extends HttpServlet {
     ArrayList<String> commentHolder = new ArrayList<String>();
     ArrayList<String> usernameHolder = new ArrayList<String>();
 
-    Query query = new Query("Task").addSort("comment-input", SortDirection.DESCENDING);
-    Query queryUsername = new Query("Task").addSort("user-name", SortDirection.DESCENDING);
+    Query query = new Query("Task");
+    Query queryUsername = new Query("Task");
 
     // Stores comment and usernames in database
     DatastoreService datastoreComments = DatastoreServiceFactory.getDatastoreService();
