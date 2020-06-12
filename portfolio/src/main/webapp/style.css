@@ -118,9 +118,8 @@ a:-webkit-any-link {
   cursor: pointer;
   text-decoration: none;
 }
- 
-/* Creates effect for links */
 
+/* Creates effect for links */
 .link{
   color: #aaa;
   transition: .5s ease;
@@ -152,7 +151,7 @@ a:-webkit-any-link {
 }
 
 /* Displays a bio about me along with some artwork. Section for artwork used to create the effects for the artworks */
-
+ 
 #myBio{
   font-size: 300%;
   letter-spacing: 2.5px;
@@ -168,7 +167,7 @@ a:-webkit-any-link {
   margin-left: auto;
   margin-right: auto;
   width: auto;
-
+ 
 }
  
 .drawing{
@@ -215,7 +214,7 @@ a:-webkit-any-link {
 }
  
 /* Creates a similar effect to the artwork for the projects */
-
+ 
 #projects{
   display: flex;
   flex-wrap: wrap;
@@ -274,7 +273,4 @@ a:-webkit-any-link {
   font-size: 17px;
 }
 
-.testing{
-    border-top: 1px solid #aaa;
-    padding: 3%;
-}
+
