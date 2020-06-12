@@ -12,17 +12,64 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+var userLoggedIn;
+
+function getLink(){
+    fetch("/log").then(response => response.json()).then((text) => {
+
+      console.log(text);
+      const jsonValues = Object.values(text);
+
+      var logUrl = jsonValues[0];
+      userLoggedIn = jsonValues[1];
+      
+      var loginLink = document.getElementById("loginLink");
+      loginLink.href = logUrl;
+
+      var loginStatus = document.getElementById("loginDescription");
+
+      if(userLoggedIn == "true"){ loginStatus.innerHTML = "LOG OUT HERE";}
+      else{ loginStatus.innerHTML = "LOG IN HERE";} 
+    });
+}
+
+
 function getComments(){
   fetch('/data').then(response => response.json()).then((text) => {
     const commentContainer = document.getElementById('commentList');
     const jsonValues = Object.values(text);
+    const jsonKeys = Object.keys(text);
 
     console.log(jsonValues);
-    
-    for(var i = 0; i < Object.values(text).length; i++){
-      var comment = document.createElement('p');
-      comment.innerHTML = jsonValues[i];
-      commentContainer.appendChild(comment);
-    }
-  })
+    console.log("User is logged in: " + userLoggedIn);
+    var commentStatus = document.getElementById("commentStatus");
+
+
+    if(userLoggedIn == "true"){
+      for(var i = 0; i < jsonValues.length; i++){
+        var comment = document.createElement('div');
+        comment.className = 'comment';
+
+        // commentMain is for the actual comment itself
+        var commentMain = document.createElement('div');
+        commentMain.className = 'commentMain';
+        // commentDetails is for the name of the commenter
+        var commentDetails = document.createElement('div');
+        commentDetails.className = 'commentDetails';
+
+        commentMain.innerHTML = "\"" + jsonValues[i] + "\"";
+        commentDetails.innerHTML = jsonKeys[i];
+
+        comment.appendChild(commentMain);
+        comment.appendChild(commentDetails);
+        commentContainer.appendChild(comment);
+
+        commentStatus.innerHTML = "COMMENTS";
+        }
+      }
+      else{
+        commentStatus.innerHTML = "LOGIN TO SEE COMMENTS";
+    }  
+  });
 }
+

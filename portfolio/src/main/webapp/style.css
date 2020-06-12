@@ -49,6 +49,59 @@ a:hover{
   width: 75%;
 }
  
+#loginDescription{
+    font-size: 20px;
+}
+
+.comment{
+  height: max-content;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;  
+  width: max-content;
+}
+
+#commentList{
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.commentMain{
+    font-size: x-large;
+    margin-left: auto;
+    margin-right: 10%;
+    width: max-content;
+}
+
+.commentDetails{
+  color: #aaa;
+  font-style: italic;
+  float: right;
+  width: max-content;
+}
+
+input[type="submit"]{
+    border: none;
+    padding: 10px 50px;
+    transition: all .5s ease;
+}
+
+input[type="submit"]:hover{
+    background-color: red;
+    color: white;
+    transform: scale(1.2);
+}
+
+input[type="text"]{
+    border-width: thin;
+    border-color: #aaa;
+}
+
+form{
+    margin-top: 2%;
+}
+
 h4{
   color: red;
   font-weight: bold;
@@ -61,27 +114,47 @@ p{
 }
  
 a:-webkit-any-link {
-  color: -webkit-link;
+  color: inherit;
   cursor: pointer;
   text-decoration: none;
 }
  
-/* Creates effect for resume link */
+/* Creates effect for links */
 
-.resume{
+.link{
   color: #aaa;
   transition: .5s ease;
 }
  
-.resume:hover{
+.link:hover{
   color: red;
   transform: scale(1.1);
 }
  
+#loginContainer{
+    height: min-content;
+    margin-left: auto;
+    margin-right: auto;
+    width: max-content;
+}
+
+.usercontainer {
+    display: inline-flex;
+    flex-wrap: wrap;
+}
+
+.passContainer {
+    display: inline-flex;
+}
+
+.submitContainer{
+    margin-top: 7%;
+}
+
 /* Displays a bio about me along with some artwork. Section for artwork used to create the effects for the artworks */
 
 #myBio{
-  font-size: 50px;
+  font-size: 300%;
   letter-spacing: 2.5px;
   margin-left: auto;
   margin-right: auto;
@@ -146,8 +219,9 @@ a:-webkit-any-link {
 #projects{
   display: flex;
   flex-wrap: wrap;
-  height: 50%;
-  position: absolute;
+  height: auto;
+  position: relative;
+  margin-bottom: 3%;
   margin-left: auto;
   margin-right: auto;
   width: 80%;
@@ -198,4 +272,9 @@ a:-webkit-any-link {
  
 .project > h5{
   font-size: 17px;
+}
+
+.testing{
+    border-top: 1px solid #aaa;
+    padding: 3%;
 }

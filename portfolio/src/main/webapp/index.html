@@ -29,18 +29,22 @@
 
   </head>
 
-
-
-  <body onload="getComments()">
+  <body onload="getLink(); getComments();">
     <div id="content">
       <!-- Provides link to my resume -->
       <a href="resume/nzbutler_resume.pdf">
-        <p style="font-size: 30px;" class="resume">
+        <p style="font-size: 30px;" class="link">
           VIEW MY RESUME
         </p>
       </a>
 
-    <br><br><br>
+      <a id="loginLink" href="">  
+        <p id="loginDescription" class="link">     
+          LOG IN HERE
+        </p>
+      </a>
+
+    <br><br>
 
     <!-- Displays a short bio about me along with some artwork-->
     <p id="myBio">
@@ -49,15 +53,21 @@
     </p>
     
     <br><br><br>
-
+    
+    <!-- This is where the comments are displayed. If the user is logged in, they will be visible.
+         Otherwise the comments will automatically be hidden. -->
     <div id="commentContainer">
-      <label for="commentList">Comments</label>
+      <h4 id="commentStatus">COMMENTS</h4>
       <div id="commentList"></div>
     </div>
+
+    <br><br>
 
     <form action="/data" method="POST">
       <p>Enter a comment:</p>
       <input type="text" name="comment-input">
+      <p> Enter your name:</p>
+      <input type="text" name="user-name">
       <br><br>
 
       <input type="submit"/>
