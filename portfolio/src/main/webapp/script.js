@@ -19,36 +19,33 @@ var commentStorage;
 
 // Fetches login/logout link along with login status
 function getLink(){
-  fetch("/log").then(response => response.json()).then((logInfo) => {
-    console.log(logInfo);
+  fetch('/log').then(response => response.json()).then((logInfo) => {
     const jsonValues = Object.values(logInfo);
 
     var logUrl = logInfo.logUrl;
     userLoggedIn = logInfo.isUserLoggedIn;
     username = logInfo.username;
       
-    var loginLink = document.getElementById("loginLink");
+    var loginLink = document.getElementById('loginLink');
     loginLink.href = logUrl;
 
-    var loginStatus = document.getElementById("loginDescription");
-    if(userLoggedIn == "true"){ 
-      var loginStatusContainer = document.getElementById("loginStatus");
+    var loginStatus = document.getElementById('loginDescription');
+    if(userLoggedIn == 'true'){ 
+      var loginStatusContainer = document.getElementById('loginStatus');
       var usernameStatus = document.createElement('p');
-      var usernameStorage = document.getElementById("nameStorage");
+      var usernameStorage = document.getElementById('nameStorage');
 
-      usernameStatus.innerHTML = "Logged in as: " + username;
+      usernameStatus.innerHTML = 'Logged in as: ' + username;
       loginStatusContainer.appendChild(usernameStatus);
       usernameStorage.value = username;
 
-      if(username == "nzbutler" || username == "neriyahbutler21"){
+      if(username == 'nzbutler' || username == 'neriyahbutler21'){
         adminPrivileges = true;
         }else{ adminPrivileges = false;}
 
-      console.log("input storage is: " + usernameStorage.value);
-
-      loginStatus.innerHTML = "LOG OUT HERE";
+      loginStatus.innerHTML = 'LOG OUT HERE';
     }
-    else{ loginStatus.innerHTML = "LOG IN HERE";} 
+    else{ loginStatus.innerHTML = 'LOG IN HERE';} 
   });
 }
 
@@ -57,11 +54,9 @@ function getComments(){
   getLink();
 
   fetch('/data').then(response => response.json()).then((text) => {
-    console.log(text);
     const jsonValues = Object.values(text);
     jsonValues.forEach((task) => {
-      console.log(task);
-      if(userLoggedIn == "true"){
+      if(userLoggedIn == 'true'){
         const commentsContainer = document.getElementById('commentList');
         var comment = document.createElement('div');
         comment.className = 'comment';
@@ -75,7 +70,7 @@ function getComments(){
         var commentDetails = document.createElement('div');
         commentDetails.className = 'commentDetails';
 
-        commentMain.innerHTML = "\"" + task.comment + "\"";
+        commentMain.innerHTML = '\"' + task.comment + '\"';
         commentDetails.innerHTML = task.username;
 
         commentInfo.appendChild(commentMain);
@@ -85,8 +80,8 @@ function getComments(){
         if(adminPrivileges == true){
           var deleteButton = document.createElement('button')
                 
-          deleteButton.className = "deleteButton";
-          deleteButton.innerHTML = "X";
+          deleteButton.className = 'deleteButton';
+          deleteButton.innerHTML = 'X';
           deleteButton.addEventListener('click', () => {
           deleteTask(task);
           comment.remove();
@@ -95,13 +90,11 @@ function getComments(){
         comment.appendChild(deleteButton);
         }
 
-      console.log("admin: " + adminPrivileges);
-
       commentsContainer.appendChild(comment);
-      commentStatus.innerHTML = "COMMENTS";
+      commentStatus.innerHTML = 'COMMENTS';
     }
     else{
-      commentStatus.innerHTML = "LOGIN TO SEE COMMENTS";
+      commentStatus.innerHTML = 'LOGIN TO SEE COMMENTS';
     }
   })
   });
