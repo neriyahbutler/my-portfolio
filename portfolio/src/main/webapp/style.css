@@ -68,15 +68,15 @@ a:hover{
 }
 
 .commentInfo{
-    display: inline-block;
-    width: max-content;
+  display: inline-block;
+  width: max-content;
 }
 
 .commentMain{
-    font-size: x-large;
-    margin-left: auto;
-    margin-right: 10%;
-    width: max-content;
+  font-size: x-large;
+  margin-left: auto;
+  margin-right: 10%;
+  width: max-content;
 }
 
 .commentDetails{
@@ -87,11 +87,11 @@ a:hover{
 }
 
 .deleteButton{
-    border: none;
-    display: inline-flex;
-    flex-wrap: wrap;
-    transition: all .5s ease;
-    width: min-content;
+  border: none;
+  display: inline-flex;
+  flex-wrap: wrap;
+  transition: all .5s ease;
+  width: min-content;
 }
 
 .deleteButton:hover{
@@ -102,28 +102,28 @@ a:hover{
 }
 
 input[type="submit"]{
-    border: none;
-    padding: 2px 15px;
-    transition: all .5s ease;
+  border: none;
+  padding: 2px 15px;
+  transition: all .5s ease;
 }
 
 input[type="submit"]:hover{
-    background-color: red;
-    color: white;
-    transform: scale(1.2);
+  background-color: red;
+  color: white;
+  transform: scale(1.2);
 }
 
 input[type="text"]{
-    border-width: thin;
-    border-color: #aaa;
+  border-width: thin;
+  border-color: #aaa;
 }
 
 #nameStorage{
-    display: none;
+  display: none;
 }
 
 form{
-    margin-top: 2%;
+  margin-top: 2%;
 }
 
 h4{
@@ -155,23 +155,23 @@ a:-webkit-any-link {
 }
  
 #loginContainer{
-    height: min-content;
-    margin-left: auto;
-    margin-right: auto;
-    width: max-content;
+  height: min-content;
+  margin-left: auto;
+  margin-right: auto;
+  width: max-content;
 }
 
 .usercontainer {
-    display: inline-flex;
-    flex-wrap: wrap;
+  display: inline-flex;
+  flex-wrap: wrap;
 }
 
 .passContainer {
-    display: inline-flex;
+  display: inline-flex;
 }
 
 .submitContainer{
-    margin-top: 7%;
+  margin-top: 7%;
 }
 
 /* Displays a bio about me along with some artwork. Section for artwork used to create the effects for the artworks */
