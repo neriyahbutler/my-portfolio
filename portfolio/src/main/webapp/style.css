@@ -67,6 +67,11 @@ a:hover{
   width: 50%;
 }
 
+.commentInfo{
+    display: inline-block;
+    width: max-content;
+}
+
 .commentMain{
     font-size: x-large;
     margin-left: auto;
@@ -81,9 +86,24 @@ a:hover{
   width: max-content;
 }
 
+.deleteButton{
+    border: none;
+    display: inline-flex;
+    flex-wrap: wrap;
+    transition: all .5s ease;
+    width: min-content;
+}
+
+.deleteButton:hover{
+  background-color: red;
+  color: white;
+  transform: scale(1.1);
+
+}
+
 input[type="submit"]{
     border: none;
-    padding: 10px 50px;
+    padding: 2px 15px;
     transition: all .5s ease;
 }
 
@@ -96,6 +116,10 @@ input[type="submit"]:hover{
 input[type="text"]{
     border-width: thin;
     border-color: #aaa;
+}
+
+#nameStorage{
+    display: none;
 }
 
 form{

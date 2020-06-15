@@ -1,17 +1,28 @@
 package com.google.sps.servlets;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.annotation.WebServlet;
+
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.google.sps.data.Task;
+import com.google.sps.data.logInfo;
+
 import com.google.appengine.api.datastore.*;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
-import java.io.IOException;
-import java.io.PrintWriter;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
+
 import com.google.gson.Gson;
-import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.List;
+
+
+
 
 @WebServlet("/log")
 public class LogServlet extends HttpServlet{
@@ -19,8 +30,10 @@ public class LogServlet extends HttpServlet{
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
         response.setContentType("application/json");
-        ArrayList<String> logInfo = new ArrayList<String>();
+
+        logInfo userLogInfo = new logInfo();
         UserService userService = UserServiceFactory.getUserService();
+        String username = "";
         Gson gson = new Gson();
 
         /* If user is not logged in, they'll be directed to a login page.
@@ -28,20 +41,24 @@ public class LogServlet extends HttpServlet{
         if(!userService.isUserLoggedIn()){
           String loginUrl = userService.createLoginURL("/index.html");
 
-          logInfo.add(loginUrl);
-          logInfo.add(Boolean.toString((userService.isUserLoggedIn())));
+          userLogInfo.setLogUrl(loginUrl);
+          userLogInfo.setIsUserLoggedIn(Boolean.toString((userService.isUserLoggedIn())));
+          userLogInfo.setUsername(username);
 
-          String json = gson.toJson(logInfo);
+          String json = gson.toJson(userLogInfo);
           response.getWriter().println(json);
           return;
         }
 
         String logoutUrl = userService.createLogoutURL("/index.html");
+        username = request.getUserPrincipal().getName();
+        username = (username.split("@"))[0];
+        
+        userLogInfo.setLogUrl(logoutUrl);
+        userLogInfo.setIsUserLoggedIn(Boolean.toString((userService.isUserLoggedIn())));
+        userLogInfo.setUsername(username);
 
-        logInfo.add(logoutUrl);
-        logInfo.add(Boolean.toString(userService.isUserLoggedIn()));
-
-        String json = gson.toJson(logInfo);
+        String json = gson.toJson(userLogInfo);
         response.getWriter().println(json);
     }
 }

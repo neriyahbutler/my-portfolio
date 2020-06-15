@@ -13,66 +13,103 @@
 // limitations under the License.
 
 var userLoggedIn;
+var username;
+var adminPrivileges;
+var commentStorage;
 
+// Fetches login/logout link along with login status
 function getLink(){
-    console.log("running getLink()...");
-    fetch("/log").then(response => response.json()).then((text) => {
+  fetch("/log").then(response => response.json()).then((logInfo) => {
+    console.log(logInfo);
+    const jsonValues = Object.values(logInfo);
 
-      console.log(text);
-      const jsonValues = Object.values(text);
-
-      var logUrl = jsonValues[0];
-      userLoggedIn = jsonValues[1];
+    var logUrl = logInfo.logUrl;
+    userLoggedIn = logInfo.isUserLoggedIn;
+    username = logInfo.username;
       
-      var loginLink = document.getElementById("loginLink");
-      loginLink.href = logUrl;
+    var loginLink = document.getElementById("loginLink");
+    loginLink.href = logUrl;
 
-      var loginStatus = document.getElementById("loginDescription");
+    var loginStatus = document.getElementById("loginDescription");
+    if(userLoggedIn == "true"){ 
+      var loginStatusContainer = document.getElementById("loginStatus");
+      var usernameStatus = document.createElement('p');
+      var usernameStorage = document.getElementById("nameStorage");
 
-      if(userLoggedIn == "true"){ loginStatus.innerHTML = "LOG OUT HERE";}
-      else{ loginStatus.innerHTML = "LOG IN HERE";} 
-    });
+      usernameStatus.innerHTML = "Logged in as: " + username;
+      loginStatusContainer.appendChild(usernameStatus);
+      usernameStorage.value = username;
+
+      if(username == "nzbutler" || username == "neriyahbutler21"){
+        adminPrivileges = true;
+        }else{ adminPrivileges = false;}
+
+      console.log("input storage is: " + usernameStorage.value);
+
+      loginStatus.innerHTML = "LOG OUT HERE";
+    }
+    else{ loginStatus.innerHTML = "LOG IN HERE";} 
+  });
 }
 
-
+// Gathers all the comments from the json object and puts them on the website
 function getComments(){
-  console.log("running getComments()...");
   getLink();
+
   fetch('/data').then(response => response.json()).then((text) => {
-    const commentContainer = document.getElementById('commentList');
+    console.log(text);
     const jsonValues = Object.values(text);
-    const jsonKeys = Object.keys(text);
-
-    console.log(jsonValues);
-    console.log("User is logged in: " + userLoggedIn);
-    var commentStatus = document.getElementById("commentStatus");
-
-
-    if(userLoggedIn == "true"){
-      for(var i = 0; i < jsonValues.length; i++){
+    jsonValues.forEach((task) => {
+      console.log(task);
+      if(userLoggedIn == "true"){
+        const commentsContainer = document.getElementById('commentList');
         var comment = document.createElement('div');
         comment.className = 'comment';
 
-        // commentMain is for the actual comment itself
+        var commentInfo = document.createElement('div');
+        commentInfo.className = 'commentInfo';
+
         var commentMain = document.createElement('div');
         commentMain.className = 'commentMain';
-        // commentDetails is for the name of the commenter
+
         var commentDetails = document.createElement('div');
         commentDetails.className = 'commentDetails';
 
-        commentMain.innerHTML = "\"" + jsonValues[i] + "\"";
-        commentDetails.innerHTML = jsonKeys[i];
+        commentMain.innerHTML = "\"" + task.comment + "\"";
+        commentDetails.innerHTML = task.username;
 
-        comment.appendChild(commentMain);
-        comment.appendChild(commentDetails);
-        commentContainer.appendChild(comment);
+        commentInfo.appendChild(commentMain);
+        commentInfo.appendChild(commentDetails);
+        comment.appendChild(commentInfo);
 
-        commentStatus.innerHTML = "COMMENTS";
+        if(adminPrivileges == true){
+          var deleteButton = document.createElement('button')
+                
+          deleteButton.className = "deleteButton";
+          deleteButton.innerHTML = "X";
+          deleteButton.addEventListener('click', () => {
+          deleteTask(task);
+          comment.remove();
+          })
+
+        comment.appendChild(deleteButton);
         }
-      }
-      else{
-        commentStatus.innerHTML = "LOGIN TO SEE COMMENTS";
-    }  
+
+      console.log("admin: " + adminPrivileges);
+
+      commentsContainer.appendChild(comment);
+      commentStatus.innerHTML = "COMMENTS";
+    }
+    else{
+      commentStatus.innerHTML = "LOGIN TO SEE COMMENTS";
+    }
+  })
   });
+}
+
+function deleteTask(task){
+  const params = new URLSearchParams();
+  params.append('id', task.id);
+  fetch('/delete-tasks', {method: 'POST', body: params});
 }
 

@@ -13,60 +13,59 @@
 // limitations under the License.
  
 package com.google.sps.servlets;
- 
+
 import java.util.*;
+
 import java.io.*;
 import java.io.IOException;
-import com.google.appengine.api.datastore.*;
+
+import javax.servlet.annotation.WebServlet;
+
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
+
+import com.google.appengine.api.datastore.*;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+
+import com.google.sps.data.Task;
+
+import com.google.gson.Gson;
+
 
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
-
-  // Where comments will be stored
-  ArrayList<String> commentArray = new ArrayList<String>();
  
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
-    ArrayList<String> commentHolder = new ArrayList<String>();
-    ArrayList<String> usernameHolder = new ArrayList<String>();
-
     Query query = new Query("Task");
-    Query queryUsername = new Query("Task");
 
-    // Stores comment and usernames in database
     DatastoreService datastoreComments = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastoreComments.prepare(query);
 
-    DatastoreService datastoreUsernames = DatastoreServiceFactory.getDatastoreService();
-    PreparedQuery resultsUsernames = datastoreUsernames.prepare(queryUsername);
-
-    // Collects the comment and username, stores them into arrays and then writes it on "/data"
+    // Collects the comment and username, stores them into arraylists and then writes it on "/data"
+    ArrayList<Task> taskList = new ArrayList<Task>();
     for(Entity entity : results.asIterable()) {
-        String comment = (String) entity.getProperty("comment-input");
-        commentHolder.add(comment);
-    }
+      String comment = (String) entity.getProperty("comment-input");
+      String username = (String) entity.getProperty("user-name");
+      long id = (long) entity.getKey().getId();
 
-    for(Entity entity : resultsUsernames.asIterable()){
-        String username = (String) entity.getProperty("user-name");
-        usernameHolder.add(username);
-    }
+      Task task = new Task(id, username, comment);
 
-    String json = convertToJson(commentHolder, usernameHolder);
+      taskList.add(task);
+    }
+    Gson gson = new Gson();
+
     response.setContentType("application/json");
-    response.getWriter().println(json);
+    response.getWriter().println(gson.toJson(taskList));
   }
  
   @Override
@@ -88,27 +87,13 @@ public class DataServlet extends HttpServlet {
  
   public String getComments(HttpServletRequest request) {
     String value = request.getParameter("comment-input");
- 
     if (value == null) { return "";}
     return value;
   }
   
   public String getName(HttpServletRequest request){
       String value = request.getParameter("user-name");
-
       if (value == null){ return "";}
       return value;
-  }
-
-  public String convertToJson(ArrayList<String> comments, ArrayList<String> username){
-    String json = "{";
-    for (int i = 0; i < comments.size(); i++){
-      if (i != 0){ json += ", ";}
-        json += "\"" + username.get(i) +"\": ";
-        json += "\"" + comments.get(i) + "\"";
-      }
-    json += "}";
-
-    return json;
   }
 }
