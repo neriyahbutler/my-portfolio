@@ -7,23 +7,9 @@ public class Task {
   private String username;
   private String comment;
 
-  public Task(){
-    this.id = 0;
-    this.username = "";
-    this.comment = "";
+  public Task(long idInput, String usernameInput, String commentInput){
+    this.id = idInput;
+    this.username = usernameInput;
+    this.comment = commentInput;
   }
-
-  public Task(long taskId, String user, String commentMsg){
-    this.id = taskId;
-    this.username = user;
-    this.comment = commentMsg;
-  }
-
-  public void setUsername(String user){ this.username = user;}
-  public void setComment(String commentMsg){ this.comment = commentMsg;}
-  public void setId(long taskId){ this.id = taskId;}
-
-  public long getId(){ return this.id;}
-  public String getUsername(){ return this.username;}
-  public String getComment(){ return this.comment;}
 }

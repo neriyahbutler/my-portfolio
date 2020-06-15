@@ -31,7 +31,6 @@ public class LogServlet extends HttpServlet{
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
         response.setContentType("application/json");
 
-        logInfo userLogInfo = new logInfo();
         UserService userService = UserServiceFactory.getUserService();
         String username = "";
         Gson gson = new Gson();
@@ -41,9 +40,7 @@ public class LogServlet extends HttpServlet{
         if(!userService.isUserLoggedIn()){
           String loginUrl = userService.createLoginURL("/index.html");
 
-          userLogInfo.setLogUrl(loginUrl);
-          userLogInfo.setIsUserLoggedIn(Boolean.toString((userService.isUserLoggedIn())));
-          userLogInfo.setUsername(username);
+          logInfo userLogInfo = new logInfo(loginUrl, Boolean.toString((userService.isUserLoggedIn())), username);
 
           String json = gson.toJson(userLogInfo);
           response.getWriter().println(json);
@@ -54,9 +51,7 @@ public class LogServlet extends HttpServlet{
         username = request.getUserPrincipal().getName();
         username = (username.split("@"))[0];
         
-        userLogInfo.setLogUrl(logoutUrl);
-        userLogInfo.setIsUserLoggedIn(Boolean.toString((userService.isUserLoggedIn())));
-        userLogInfo.setUsername(username);
+        logInfo userLogInfo = new logInfo(logoutUrl, Boolean.toString((userService.isUserLoggedIn())), username);
 
         String json = gson.toJson(userLogInfo);
         response.getWriter().println(json);

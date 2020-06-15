@@ -7,17 +7,9 @@ public class logInfo {
   public String isUserLoggedIn = "";
   public String username = "";
 
-  public logInfo(){
-    logUrl = "";
-    isUserLoggedIn = "";
-    username = "";
+  public logInfo(String logUrlInput, String isUserLoggedInInput, String usernameInput){
+    this.logUrl = logUrlInput;
+    this.isUserLoggedIn = isUserLoggedInInput;
+    this.username = usernameInput;
   }
-
-  public void setLogUrl(String url){ this.logUrl = url;}
-  public void setIsUserLoggedIn(String loginBoolean){ this.isUserLoggedIn = loginBoolean;}
-  public void setUsername(String user){ this.username = user;}
-
-  public String getLogUrl(){return this.logUrl;}
-  public String getIsUserLoggedIn(){return this.isUserLoggedIn;}
-  public String getUsername(){return this.username;}
 }
