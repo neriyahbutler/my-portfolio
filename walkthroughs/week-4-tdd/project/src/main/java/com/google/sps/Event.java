@@ -14,6 +14,7 @@
 
 package com.google.sps;
 
+import java.util.*;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
@@ -32,9 +33,10 @@ public final class Event {
    * Creates a new event.
    *
    * @param title The human-readable name for the event. Must be non-null.
-   * @param when The time when the event takes place. Must be non-null.
+   * @param when The time when` the event takes place. Must be non-null.
    * @param attendees The collection of people attending the event. Must be non-null.
    */
+
   public Event(String title, TimeRange when, Collection<String> attendees) {
     if (title == null) {
       throw new IllegalArgumentException("title cannot be null");
@@ -94,3 +96,10 @@ public final class Event {
     return a.title.equals(b.title) && a.when.equals(b.when) && a.attendees.equals(b.attendees);
   }
 }
+
+class eventComparator implements Comparator<Event>{
+    public int compare(Event a, Event b){
+        return(Long.compare(a.getWhen().start(), b.getWhen().start()));
+    }
+}
+

@@ -23,6 +23,7 @@ import java.util.HashSet;
 public final class MeetingRequest {
   // All the people that should be attending this new meeting. Use a set to avoid duplicates.
   private final Collection<String> attendees = new HashSet<>();
+  private final Collection<String> optionalAttendees = new HashSet<>();
 
   // The duration of the meeting in minutes.
   private final long duration;
@@ -32,11 +33,21 @@ public final class MeetingRequest {
     this.attendees.addAll(attendees);
   }
 
+  public MeetingRequest(Collection<String> attendees, Collection<String> optionalAttendees, long duration)  {
+    this.duration = duration;
+    this.attendees.addAll(attendees);
+    this.optionalAttendees.addAll(optionalAttendees);
+  }
+
   /**
    * Returns a read-only copy of the people who are required to attend this meeting.
    */
   public Collection<String> getAttendees() {
     return Collections.unmodifiableCollection(attendees);
+  }
+
+  public Collection<String> getOptionalAttendees() {
+      return Collections.unmodifiableCollection(optionalAttendees);
   }
 
   /**
