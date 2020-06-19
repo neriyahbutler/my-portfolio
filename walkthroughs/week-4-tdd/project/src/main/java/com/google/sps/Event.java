@@ -98,8 +98,7 @@ public final class Event {
 }
 
 class eventComparator implements Comparator<Event>{
-    public int compare(Event a, Event b){
-        return(Long.compare(a.getWhen().start(), b.getWhen().start()));
-    }
+  public int compare(Event a, Event b){
+    return(Long.compare(a.getWhen().start(), b.getWhen().start()));
+  }
 }
-
