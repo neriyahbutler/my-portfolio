@@ -33,7 +33,7 @@ public final class Event {
    * Creates a new event.
    *
    * @param title The human-readable name for the event. Must be non-null.
-   * @param when The time when` the event takes place. Must be non-null.
+   * @param when The time when the event takes place. Must be non-null.
    * @param attendees The collection of people attending the event. Must be non-null.
    */
 
