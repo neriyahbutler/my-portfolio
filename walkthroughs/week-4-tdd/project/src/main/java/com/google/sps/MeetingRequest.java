@@ -47,7 +47,7 @@ public final class MeetingRequest {
   }
 
   public Collection<String> getOptionalAttendees() {
-      return Collections.unmodifiableCollection(optionalAttendees);
+    return Collections.unmodifiableCollection(optionalAttendees);
   }
 
   /**
